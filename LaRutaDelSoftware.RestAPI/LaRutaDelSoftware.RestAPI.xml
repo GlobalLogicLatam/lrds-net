@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LaRutaDelSoftware.RestAPI</name>
+    </assembly>
+    <members>
+        <member name="M:LaRutaDelSoftware.RestAPI.Controllers.LoginController.Login(LaRutaDelSoftware.RestAPI.Models.LoginRequest)">
+            <summary>
+            Ingresar al sistema con usuario ya creado. 
+            En caso de exito la aplicacion devolvera un header con un token asosiado a la conexion del usuario.
+            </summary>
+        </member>
+        <member name="M:LaRutaDelSoftware.RestAPI.Controllers.LoginController.Logout(LaRutaDelSoftware.RestAPI.Models.LoginReply)">
+            <summary>
+            Permite enviar la peticion de terminar la sesion actualmente activa.
+            </summary>
+        </member>
+        <member name="M:LaRutaDelSoftware.RestAPI.Controllers.LoginController.GetUser(System.String)">
+            <summary>
+            Obtener los datos del usuario a partir del UserName
+            </summary>
+        </member>
+        <member name="M:LaRutaDelSoftware.RestAPI.Controllers.SubjectController.GetMateria(System.Int32,System.Int32)">
+            <summary>
+            Obtener el estado de la materia para un alumno en particular
+            </summary>
+            <param name="user_id"></param>
+            <param name="materia_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LaRutaDelSoftware.RestAPI.Controllers.SubjectController.PostMateria(System.Int32,System.Int32)">
+            <summary>
+            Inscribir o desincribir a un alumno en una materia
+            </summary>
+            <param name="user_id"></param>
+            <param name="materia_id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
