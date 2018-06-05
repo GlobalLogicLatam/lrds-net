@@ -2,6 +2,7 @@ using CommonServiceLocator;
 using LaRutaDelSoftware.BussinessLogic.Services;
 using LaRutaDelSoftware.DataAccess.Interfaces;
 using LaRutaDelSoftware.DataAccess.Nhibernate;
+using LaRutaDelSoftware.DataAccess.EntityFramework;
 using LaRutaDelSoftware.DomainEntities;
 using System.Web.Http;
 using Unity;
@@ -26,14 +27,23 @@ namespace LaRutaDelSoftware.RestAPI
             container.RegisterType<StudentService>();
             container.RegisterType<StudentSubjectService>();
 
-            //NHIBERNATE
-            container.RegisterType<UnitOfWork>(new PerRequestLifetimeManager());
-            var factory = new InjectionFactory(x => x.Resolve<UnitOfWork>());
-            container.RegisterType<IUnitOfWork>(factory);
-            container.RegisterType<IRepository<User>, Repository<User>>();
-            container.RegisterType<IRepository<Student>, Repository<Student>>();
-            container.RegisterType<IRepository<StudentSubject>, Repository<StudentSubject>>();
-            container.RegisterType<IRepository<Subject>, Repository<Subject>>();
+            ////NHIBERNATE
+            //container.RegisterType<DataAccess.Nhibernate.UnitOfWork>(new PerRequestLifetimeManager());
+            //var factoryNH = new InjectionFactory(x => x.Resolve<DataAccess.Nhibernate.UnitOfWork>());
+            //container.RegisterType<IUnitOfWork>(factoryNH);
+            //container.RegisterType<IRepository<User>, DataAccess.Nhibernate.Repository<User>>();
+            //container.RegisterType<IRepository<Student>, DataAccess.Nhibernate.Repository<Student>>();
+            //container.RegisterType<IRepository<StudentSubject>, DataAccess.Nhibernate.Repository<StudentSubject>>();
+            //container.RegisterType<IRepository<Subject>, DataAccess.Nhibernate.Repository<Subject>>();
+
+            //ENTITY FRAMEWORK
+            container.RegisterType<DataAccess.EntityFramework.UnitOfWork>(new PerRequestLifetimeManager());
+            var factoryEF = new InjectionFactory(x => x.Resolve<DataAccess.EntityFramework.UnitOfWork>());
+            container.RegisterType<IUnitOfWork>(factoryEF);
+            container.RegisterType<IRepository<User>, DataAccess.EntityFramework.Repository<User>>();
+            container.RegisterType<IRepository<Student>, DataAccess.EntityFramework.Repository<Student>>();
+            container.RegisterType<IRepository<StudentSubject>, DataAccess.EntityFramework.Repository<StudentSubject>>();
+            container.RegisterType<IRepository<Subject>, DataAccess.EntityFramework.Repository<Subject>>();
         }
     }
 }

@@ -23,7 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaRutaDelSoftware.Bussiness
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaRutaDelSoftware.RestAPI", "LaRutaDelSoftware.RestAPI\LaRutaDelSoftware.RestAPI.csproj", "{8E5C8BCE-0F3B-4121-8A47-2CCB39E76A67}"
 EndProject
-
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-DB scripts", "6-DB scripts", "{18215BAB-9CC9-496E-BEB5-50658AD7FC62}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oracle", "Oracle", "{8DD7E8F5-4A80-427A-B7D4-9A6DD72D8FE1}"
@@ -31,7 +30,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oracle", "Oracle", "{8DD7E8
 		InitialScripts.sql = InitialScripts.sql
 	EndProjectSection
 EndProject
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaRutaDelSoftware.DataAccess.EntityFramework", "LaRutaDelSoftware.DataAccess.EntityFramework\LaRutaDelSoftware.DataAccess.EntityFramework.csproj", "{3F8D5144-D30B-4F76-BD8A-7D8A13F7C865}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalDb", "LocalDb", "{925B05CE-D4DB-400C-9B00-C4E6E5D5F1BE}"
+	ProjectSection(SolutionItems) = preProject
+		InitialLocalDb.sql = InitialLocalDb.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +63,10 @@ Global
 		{8E5C8BCE-0F3B-4121-8A47-2CCB39E76A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E5C8BCE-0F3B-4121-8A47-2CCB39E76A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E5C8BCE-0F3B-4121-8A47-2CCB39E76A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F8D5144-D30B-4F76-BD8A-7D8A13F7C865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F8D5144-D30B-4F76-BD8A-7D8A13F7C865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F8D5144-D30B-4F76-BD8A-7D8A13F7C865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F8D5144-D30B-4F76-BD8A-7D8A13F7C865}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +77,9 @@ Global
 		{FC65F1C3-28E1-4BA2-9DA4-1D53A3AD2848} = {27A0CA51-8E18-4149-8965-919AA56062AB}
 		{DA93A8F1-C129-416E-8AE2-72C1ABB14FE8} = {DD948BBB-B646-4772-B18A-CF516331E0F4}
 		{8E5C8BCE-0F3B-4121-8A47-2CCB39E76A67} = {DE53BE25-7856-4F5B-9FB1-1779AD4DADE6}
+		{8DD7E8F5-4A80-427A-B7D4-9A6DD72D8FE1} = {18215BAB-9CC9-496E-BEB5-50658AD7FC62}
+		{3F8D5144-D30B-4F76-BD8A-7D8A13F7C865} = {27A0CA51-8E18-4149-8965-919AA56062AB}
+		{925B05CE-D4DB-400C-9B00-C4E6E5D5F1BE} = {18215BAB-9CC9-496E-BEB5-50658AD7FC62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82997250-9BF1-494F-935F-BE0504C7CD40}

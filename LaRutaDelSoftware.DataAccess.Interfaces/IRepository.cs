@@ -8,6 +8,6 @@ namespace LaRutaDelSoftware.DataAccess.Interfaces
         T GetById(object id);
         void Create(T entity);
         void Update(T entity);
-        void Delete(int id);
+        void Delete(object id);
     }
 }

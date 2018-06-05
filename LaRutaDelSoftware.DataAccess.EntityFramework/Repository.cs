@@ -1,8 +1,7 @@
 ﻿using LaRutaDelSoftware.DataAccess.Interfaces;
-using NHibernate;
 using System.Linq;
 
-namespace LaRutaDelSoftware.DataAccess.Nhibernate
+namespace LaRutaDelSoftware.DataAccess.EntityFramework
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -12,32 +11,33 @@ namespace LaRutaDelSoftware.DataAccess.Nhibernate
         {
             _unitOfWork = unitOfWork;
         }
-
-        protected ISession Session { get { return _unitOfWork.Session; } }
+       
 
         public IQueryable<T> GetAll()
         {
-            return Session.Query<T>();
+            return _unitOfWork.GetSetOf<T>().AsQueryable();
         }
 
         public T GetById(object id)
         {
-            return Session.Get<T>(id);
+            return _unitOfWork.GetSetOf<T>().Find(id);
         }
 
         public void Create(T entity)
         {
-            Session.Save(entity);
+            _unitOfWork.GetSetOf<T>().Add(entity);
         }
 
         public void Update(T entity)
         {
-            Session.Update(entity);
+            //nothing, because context works with attached entities
+            return;
         }
 
         public void Delete(object id)
         {
-            Session.Delete(Session.Load<T>(id));
+            T entity = this.GetById(id);
+            _unitOfWork.GetSetOf<T>().Remove(entity);
         }
     }
 }

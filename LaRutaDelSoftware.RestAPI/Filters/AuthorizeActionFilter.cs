@@ -9,7 +9,7 @@ using System.Web.Http.Filters;
 
 namespace LaRutaDelSoftware.RestAPI.Filters
 {
-    public class AuthorizeUniqueHostActionFilter : AuthorizationFilterAttribute
+    public class AuthorizeActionFilter : AuthorizationFilterAttribute
     {
         private UserService userService { get; set; }
 

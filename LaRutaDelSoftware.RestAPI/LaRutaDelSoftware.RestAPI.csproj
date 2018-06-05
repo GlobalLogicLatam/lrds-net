@@ -55,6 +55,12 @@
     <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.2.1\lib\net45\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -190,7 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
-    <Compile Include="Filters\AuthorizeUniqueHostActionFilter.cs" />
+    <Compile Include="Filters\AuthorizeActionFilter.cs" />
     <Compile Include="Filters\UnitOfWorkActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,6 +234,10 @@
     <ProjectReference Include="..\LaRutaDelSoftware.BussinessLogic.Services\LaRutaDelSoftware.BussinessLogic.Services.csproj">
       <Project>{DA93A8F1-C129-416E-8AE2-72C1ABB14FE8}</Project>
       <Name>LaRutaDelSoftware.BussinessLogic.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LaRutaDelSoftware.DataAccess.EntityFramework\LaRutaDelSoftware.DataAccess.EntityFramework.csproj">
+      <Project>{3f8d5144-d30b-4f76-bd8a-7d8a13f7c865}</Project>
+      <Name>LaRutaDelSoftware.DataAccess.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\LaRutaDelSoftware.DataAccess.Interfaces\LaRutaDelSoftware.DataAccess.Interfaces.csproj">
       <Project>{346A2885-090B-4C95-B099-EFFFCD48A297}</Project>

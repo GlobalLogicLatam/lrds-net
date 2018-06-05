@@ -18,13 +18,14 @@ namespace LaRutaDelSoftware.BussinessLogic.Services
         public List<Subject> GetAllOfUser(Student student)
         {
             List<Subject> result = this.repositorySubjectStudents.GetAll().Where(s =>
-                s.Student == student).Select(x => x.Subject).ToList();
+                s.Student.Id == student.Id).
+                Select(x => x.Subject).ToList();
             return result;
         }
 
         public StudentSubject GetSubjectStatus(Student student, int subjectId)
         {
-            StudentSubject result = this.repositorySubjectStudents.GetAll().SingleOrDefault(x => x.Subject.Id == subjectId && x.Student == student);
+            StudentSubject result = this.repositorySubjectStudents.GetAll().SingleOrDefault(x => x.Subject.Id == subjectId && x.Student.Id == student.Id);
             return result;
         }
 
@@ -34,16 +35,17 @@ namespace LaRutaDelSoftware.BussinessLogic.Services
             this.repositorySubjectStudents.Create(new StudentSubject
             {
                 Student = student,
-                Subject = subject
+                Subject = subject,
+                Registered = true,
             });
         }
 
         public void UnregisterStudentToSubject(Student student, int subjectId)
         {
             StudentSubject subjectRecord = this.repositorySubjectStudents.GetAll().SingleOrDefault(
-                x => x.Student == student && x.Subject.Id == subjectId);
-
-            this.repositorySubjectStudents.Delete(subjectRecord.Id);
+                x => x.Student.Id == student.Id && x.Subject.Id == subjectId);
+            subjectRecord.Registered = false;
+            this.repositorySubjectStudents.Update(subjectRecord);
         }
     }
 }

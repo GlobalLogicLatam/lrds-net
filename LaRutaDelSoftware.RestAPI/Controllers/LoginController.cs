@@ -46,8 +46,8 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
         /// </summary>
         [HttpPost]
         [Route("logout")]
-        [AuthorizeUniqueHostActionFilter]
-        public IHttpActionResult Logout(LoginReply login)
+        [AuthorizeActionFilter]
+        public IHttpActionResult Logout()
         {
             User currentUser = this.userService.GetCurrentUser();
             this.userService.Logout(currentUser);
@@ -60,7 +60,7 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
         /// </summary>
         [HttpGet]
         [Route("{userName}")]
-        [AuthorizeUniqueHostActionFilter]
+        [AuthorizeActionFilter]
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetUser(string userName)
         {

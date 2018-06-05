@@ -10,7 +10,7 @@
             En caso de exito la aplicacion devolvera un header con un token asosiado a la conexion del usuario.
             </summary>
         </member>
-        <member name="M:LaRutaDelSoftware.RestAPI.Controllers.LoginController.Logout(LaRutaDelSoftware.RestAPI.Models.LoginReply)">
+        <member name="M:LaRutaDelSoftware.RestAPI.Controllers.LoginController.Logout">
             <summary>
             Permite enviar la peticion de terminar la sesion actualmente activa.
             </summary>

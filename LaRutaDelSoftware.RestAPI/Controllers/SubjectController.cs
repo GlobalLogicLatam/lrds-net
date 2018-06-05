@@ -1,5 +1,6 @@
 ﻿using LaRutaDelSoftware.BussinessLogic.Services;
 using LaRutaDelSoftware.DomainEntities;
+using LaRutaDelSoftware.RestAPI.Filters;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -7,6 +8,7 @@ using System.Web.Http.Description;
 namespace LaRutaDelSoftware.RestAPI.Controllers
 {
     [RoutePrefix("user")]
+    [AuthorizeActionFilter]
     public class SubjectController : ApiController
     {
         private StudentSubjectService studentSubjectService;
@@ -58,7 +60,7 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
             Student student = this.studentService.GetStudent(user_id);
 
             var statusSubject = this.studentSubjectService.GetSubjectStatus(student, materia_id);
-            if (statusSubject == null)
+            if (statusSubject == null || statusSubject.Registered == false)
                 this.studentSubjectService.RegisterStudentToSubject(student, materia_id);
             else
                 this.studentSubjectService.UnregisterStudentToSubject(student, materia_id);
