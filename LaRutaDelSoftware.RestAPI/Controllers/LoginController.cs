@@ -38,7 +38,10 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
                 User user = this.userService.GetUser(login.UserName, login.Password);
 
                 if (user == null)
+                {
+                    this.userService.LockkUser(login.UserName);
                     return Unauthorized();
+                }
 
                 this.userService.Login(user, sessionToken);
 

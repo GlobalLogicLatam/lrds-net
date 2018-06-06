@@ -12,5 +12,6 @@ namespace LaRutaDelSoftware.DomainEntities
         public virtual DateTime? SessionStart { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual DateTime? DateOfBlock { get; set; }
+        public virtual int Locks { get; set; }
     }
 }

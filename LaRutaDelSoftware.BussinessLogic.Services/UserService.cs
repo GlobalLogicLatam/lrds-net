@@ -41,6 +41,21 @@ namespace LaRutaDelSoftware.BussinessLogic.Services
             return user;
         }
 
+        public void LockkUser(string userName)
+        {
+            User user = repositoryUser.GetAll().Where(u => u.UserName == userName).SingleOrDefault();
+            if (user != null)
+            {
+                ++user.Locks;
+                if (user.Locks >= 3)
+                {
+                    user.Locks = 0;
+                    user.DateOfBlock = DateTime.Now;
+                }
+                repositoryUser.Update(user);
+            }
+        }
+
         public User GetUser(string sessionToken)
         {
             User loginOfUser = repositoryUser.GetAll().Where(l => l.CurrentSessionToken == sessionToken).SingleOrDefault();

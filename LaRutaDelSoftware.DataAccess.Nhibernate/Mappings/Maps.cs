@@ -16,6 +16,7 @@ namespace LaRutaDelSoftware.DataAccess.Nhibernate.Mappings
             Map(x => x.CreationDate, "CREATION_DATE");
             Map(x => x.IsActive, "ISACTIVE");
             Map(x => x.DateOfBlock, "DATEOFBLOCK");
+            Map(x => x.Locks, "LOCKS");
         }
     }
 
