@@ -1,9 +1,9 @@
+using System.Configuration;
+using System.IO;
 using System.Web.Http;
-using WebActivatorEx;
 using LaRutaDelSoftware.RestAPI;
 using Swashbuckle.Application;
-using System;
-using System.IO;
+using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -103,8 +103,7 @@ namespace LaRutaDelSoftware.RestAPI
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        c.IncludeXmlComments(Path.Combine(@"C:\Users\emanuel.velzi\source\repos\LaRutaDelSoftware\LaRutaDelSoftware.RestAPI",
-                            "LaRutaDelSoftware.RestAPI.xml"));
+                        c.IncludeXmlComments(Path.Combine(ConfigurationManager.AppSettings["RestAPIXMLPath"]));
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
