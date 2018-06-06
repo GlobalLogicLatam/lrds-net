@@ -1,10 +1,10 @@
-﻿using LaRutaDelSoftware.BussinessLogic.Services;
+﻿using System;
+using System.Web.Http;
+using System.Web.Http.Description;
+using LaRutaDelSoftware.BussinessLogic.Services;
 using LaRutaDelSoftware.DomainEntities;
 using LaRutaDelSoftware.RestAPI.Filters;
 using LaRutaDelSoftware.RestAPI.Models;
-using System;
-using System.Web.Http;
-using System.Web.Http.Description;
 
 namespace LaRutaDelSoftware.RestAPI.Controllers
 {
@@ -29,16 +29,31 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
         [ResponseType(typeof(LoginReply))]
         public IHttpActionResult Login(LoginRequest login)
         {
-            string sessionToken = Guid.NewGuid().ToString();
-            User user = this.userService.GetUser(login.UserName, login.Password);
-            this.userService.Login(user, sessionToken);
-
-            var reply = new LoginReply
+            try
             {
-                Token = sessionToken
-            };
+                if (!ModelState.IsValid)
+                    return BadRequest("Verifique los datos ingresados.");
 
-            return Ok(reply);
+                string sessionToken = Guid.NewGuid().ToString();
+                User user = this.userService.GetUser(login.UserName, login.Password);
+
+                if (user == null)
+                    return Unauthorized();
+
+                this.userService.Login(user, sessionToken);
+
+                var reply = new LoginReply
+                {
+                    Token = sessionToken
+                };
+
+                return Ok(reply);
+            }
+            catch (Exception ex)
+            {
+
+                return InternalServerError(ex);
+            }
         }
 
         /// <summary>
@@ -65,7 +80,7 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
         public IHttpActionResult GetUser(string userName)
         {
             Student student = this.studentService.GetStudent(userName);
-            
+
             return Ok(student);
         }
 
