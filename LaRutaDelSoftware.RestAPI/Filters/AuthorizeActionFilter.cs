@@ -24,14 +24,14 @@ namespace LaRutaDelSoftware.RestAPI.Filters
 
                 if (user == null)
                 {
-                    actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+                    actionContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden);
                 }
                 else
                     Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(sessionToken), new string[] { });
             }
             else
             {
-                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden);
             }
 
             base.OnAuthorization(actionContext);

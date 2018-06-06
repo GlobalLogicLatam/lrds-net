@@ -8,6 +8,8 @@ namespace LaRutaDelSoftware.RestAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.Filters.Add(new ValidateModelStateFilter());
+            config.Filters.Add(new ExceptionHandlingAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

@@ -2,6 +2,7 @@
 using LaRutaDelSoftware.DomainEntities;
 using LaRutaDelSoftware.RestAPI.Filters;
 using System.Collections.Generic;
+using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -13,10 +14,12 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
     {
         private StudentSubjectService studentSubjectService;
         private StudentService studentService;
-        public SubjectController(StudentSubjectService studentSubjectService, StudentService studentService)
+        private SubjectService subjectService;
+        public SubjectController(StudentSubjectService studentSubjectService, StudentService studentService, SubjectService subjectService)
         {
             this.studentSubjectService = studentSubjectService;
             this.studentService = studentService;
+            this.subjectService = subjectService;
         }
 
         [HttpGet]
@@ -25,6 +28,8 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
         public IHttpActionResult GetMaterias(int user_id)
         {
             Student student = this.studentService.GetStudent(user_id);
+            if (student == null)
+                return Content(HttpStatusCode.NotFound, "Alumno no encontrado");
             List<Subject> result = studentSubjectService.GetAllOfUser(student);
             return Ok(result);
         }
@@ -41,7 +46,12 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
         public IHttpActionResult GetMateria(int user_id, int materia_id)
         {
             Student student = this.studentService.GetStudent(user_id);
+            if (student == null)
+                return Content(HttpStatusCode.NotFound, "Alumno no encontrado");
+
             StudentSubject subjectStatus = this.studentSubjectService.GetSubjectStatus(student, materia_id);
+            if (subjectStatus == null)
+                return Content(HttpStatusCode.NotFound, "Par Alumno-Materia no encontrado");
 
             return Ok(subjectStatus);
         }
@@ -58,14 +68,27 @@ namespace LaRutaDelSoftware.RestAPI.Controllers
         public IHttpActionResult PostMateria(int user_id, int materia_id)
         {
             Student student = this.studentService.GetStudent(user_id);
+            if (student == null)
+                return Content(HttpStatusCode.NotFound, "Alumno no encontrado");
 
+            Subject subject = this.subjectService.GetSubject(materia_id);
+            if (subject == null)
+                return Content(HttpStatusCode.NotFound, "Materia no encontrada");
+
+            string resultMessage = "";
             var statusSubject = this.studentSubjectService.GetSubjectStatus(student, materia_id);
             if (statusSubject == null || statusSubject.Registered == false)
+            {
                 this.studentSubjectService.RegisterStudentToSubject(student, materia_id);
+                resultMessage = "Inscripto ok!";
+            }
             else
+            {
                 this.studentSubjectService.UnregisterStudentToSubject(student, materia_id);
+                resultMessage = "Desinscripto ok!";
+            }
 
-            return Ok();
+            return Ok(resultMessage);
         }
 
     }

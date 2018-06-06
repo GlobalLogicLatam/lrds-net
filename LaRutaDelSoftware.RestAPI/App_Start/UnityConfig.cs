@@ -26,6 +26,7 @@ namespace LaRutaDelSoftware.RestAPI
             container.RegisterType<UserService>();
             container.RegisterType<StudentService>();
             container.RegisterType<StudentSubjectService>();
+            container.RegisterType<SubjectService>();
 
             ////NHIBERNATE
             //container.RegisterType<DataAccess.Nhibernate.UnitOfWork>(new PerRequestLifetimeManager());

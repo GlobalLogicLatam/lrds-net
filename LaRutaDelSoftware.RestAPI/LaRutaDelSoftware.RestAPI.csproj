@@ -197,7 +197,9 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Filters\AuthorizeActionFilter.cs" />
+    <Compile Include="Filters\ExceptionHandlingAttribute.cs" />
     <Compile Include="Filters\UnitOfWorkActionFilter.cs" />
+    <Compile Include="Filters\ValidateModelStateFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

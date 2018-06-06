@@ -36,5 +36,10 @@
             <param name="materia_id"></param>
             <returns></returns>
         </member>
+        <member name="M:LaRutaDelSoftware.RestAPI.Filters.ExceptionHandlingAttribute.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            A global exception handler that will be used to catch any error
+            </summary>
+        </member>
     </members>
 </doc>
