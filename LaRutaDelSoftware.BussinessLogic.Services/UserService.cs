@@ -35,7 +35,8 @@ namespace LaRutaDelSoftware.BussinessLogic.Services
 
         public User GetUser(string userName, string password)
         {
-            User user = repositoryUser.GetAll().Where(u => u.UserName == userName && u.Password == password && u.IsActive).SingleOrDefault();
+            DateTime blockingTime = DateTime.Now.AddMinutes(-10);
+            User user = repositoryUser.GetAll().Where(u => u.UserName == userName && u.Password == password && u.IsActive && (!u.DateOfBlock.HasValue || u.DateOfBlock < blockingTime)).SingleOrDefault();
 
             return user;
         }
@@ -64,6 +65,5 @@ namespace LaRutaDelSoftware.BussinessLogic.Services
             User user = this.repositoryUser.GetAll().SingleOrDefault(l => l.CurrentSessionToken == Thread.CurrentPrincipal.Identity.Name);
             return user;
         }
-
     }
 }

@@ -6,7 +6,8 @@
     [CreationDate] DATETIME NULL, 
     [CurrentSessionToken] NCHAR(255) NULL, 
     [SessionStart] DATETIME NULL,
-	[IsActive] BIT NOT NULL
+	[IsActive] BIT NOT NULL,
+	[DateOfBlock] DATETIME NULL
 )
 -------------------------------------------
 CREATE TABLE [dbo].Students
