@@ -5,7 +5,8 @@
     [Username] NCHAR(255) NULL, 
     [CreationDate] DATETIME NULL, 
     [CurrentSessionToken] NCHAR(255) NULL, 
-    [SessionStart] DATETIME NULL
+    [SessionStart] DATETIME NULL,
+	[IsActive] BIT NOT NULL
 )
 -------------------------------------------
 CREATE TABLE [dbo].Students
@@ -38,7 +39,7 @@ CREATE TABLE [dbo].StudentSubjects
 )
 -------------------------------------------
 
-INSERT INTO USERS (CreationDate, "PASSWORD", "USERNAME", SessionStart, CurrentSessionToken) VALUES 
-('05/06/2018', '123456', 'MyUser', NULL, NULL);
+INSERT INTO USERS (CreationDate, "PASSWORD", "USERNAME", SessionStart, CurrentSessionToken, IsActive) VALUES 
+('05/06/2018', '123456', 'MyUser', NULL, NULL, 1);
 INSERT INTO STUDENTS ("USER_ID", "SURNAME", "FIRSTNAME", MAIL) VALUES (1, 'SURNAME', 'FIRST_NAME', 'MyMAIL');
 INSERT INTO SUBJECTS (DEGREE, "NAME", "SCHEDULE", Date) VALUES (3, 'NAME', '19-21HS','05/06/2018');

@@ -1,14 +1,14 @@
-﻿using LaRutaDelSoftware.DataAccess.Interfaces;
-using LaRutaDelSoftware.DomainEntities;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
+using LaRutaDelSoftware.DataAccess.Interfaces;
+using LaRutaDelSoftware.DomainEntities;
 
 namespace LaRutaDelSoftware.BussinessLogic.Services
 {
     public class UserService
     {
-                private IRepository<User> repositoryUser;
+        private IRepository<User> repositoryUser;
 
         public UserService(IRepository<User> repositoryUser)
         {
@@ -35,7 +35,7 @@ namespace LaRutaDelSoftware.BussinessLogic.Services
 
         public User GetUser(string userName, string password)
         {
-            User user = repositoryUser.GetAll().Where(u => u.UserName == userName && u.Password == password).SingleOrDefault();
+            User user = repositoryUser.GetAll().Where(u => u.UserName == userName && u.Password == password && u.IsActive).SingleOrDefault();
 
             return user;
         }

@@ -10,5 +10,7 @@ namespace LaRutaDelSoftware.DomainEntities
         public virtual DateTime CreationDate { get; set; }
         public virtual string CurrentSessionToken { get; set; }
         public virtual DateTime? SessionStart { get; set; }
+
+        public virtual bool IsActive { get; set; }
     }
 }
